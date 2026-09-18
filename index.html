@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mario Navas — Projects</title>
+  <meta name="description" content="Free and open-source desktop and self-hosted apps by Mario Navas (@mnavas): a full-resolution photo editor, instax printing, photo triage, a video editor, and self-hosted assessments." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --accent:#7C5CFC; --accent-dark:#5B3EE8; --accent-pale:#F3F0FF;
+      --g50:#FAFAFB; --g100:#F3F3F5; --g200:#E6E5EA; --g400:#A5A3AE;
+      --g600:#56545F; --g700:#413F49; --g800:#2A2833; --g900:#17161E; --white:#fff; --radius:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;color:var(--g800);background:var(--white);line-height:1.6}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--g200)}
+    .nav-inner{padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav-brand{font-size:1.15rem;font-weight:800;color:var(--accent);text-decoration:none}
+    .nav-links{display:flex;gap:1.75rem;align-items:center}
+    .nav-links a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--g600)}
+    .nav-links a:hover{color:var(--g900)}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:.5rem 1.25rem;border-radius:8px;font-size:.875rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:.15s}
+    .btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-dark)}
+    @media(max-width:640px){.nav-links a:not(.btn){display:none}}
+
+    .hero{background:linear-gradient(160deg,var(--accent-pale) 0%,var(--white) 60%);padding:5rem 2rem 3.5rem;text-align:center}
+    .hero .eyebrow{display:inline-block;background:var(--accent-pale);border:1px solid #7C5CFC55;color:var(--accent-dark);font-size:.8rem;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:1.25rem}
+    .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--g900);line-height:1.15;max-width:760px;margin:0 auto .9rem}
+    .hero h1 .hl{color:var(--accent)}
+    .hero p{font-size:1.1rem;color:var(--g600);max-width:600px;margin:0 auto 2rem}
+    .hero-meta{font-size:.8rem;color:var(--g400);display:flex;justify-content:center;gap:1.4rem;flex-wrap:wrap}
+
+    .section{padding:4.5rem 2rem}
+    .section-inner{max-width:1080px;margin:0 auto}
+    .section-label{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+    .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--g900);margin-bottom:.75rem}
+    .section-sub{color:var(--g600);max-width:560px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
+    .card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--g200);border-radius:var(--radius);padding:1.6rem;transition:box-shadow .2s,border-color .2s,transform .2s}
+    .card:hover{box-shadow:0 8px 30px rgba(90,60,230,.10);border-color:var(--accent);transform:translateY(-2px)}
+    .card-icon{width:52px;height:52px;border-radius:12px;background:var(--accent-pale);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1rem}
+    .card h3{font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
+    .card p{font-size:.9rem;color:var(--g600);line-height:1.6;flex:1}
+    .card .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
+    .tag{font-size:.7rem;font-weight:600;color:var(--g600);background:var(--g100);border:1px solid var(--g200);padding:2px 8px;border-radius:999px;font-family:'JetBrains Mono',monospace}
+    .card .links{display:flex;gap:.6rem;margin-top:.5rem}
+    .card .links a{font-size:.85rem;font-weight:600;text-decoration:none;padding:.5rem .9rem;border-radius:8px}
+    .card .links .open{background:var(--accent);color:#fff}.card .links .open:hover{background:var(--accent-dark)}
+    .card .links .repo{background:var(--g100);color:var(--g700);border:1px solid var(--g200)}.card .links .repo:hover{border-color:var(--accent);color:var(--accent)}
+
+    .support{background:var(--g50)}
+    .support-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:2.5rem}
+    @media(max-width:768px){.support-inner{grid-template-columns:1fr}}
+    .support-text p{color:var(--g600);margin-bottom:1rem}
+    .support-text p.fine{font-size:.85rem;color:var(--g400)}
+    .donate-card{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius);padding:2rem}
+    .donate-card h3{font-size:1rem;font-weight:700;margin-bottom:1.25rem}
+    .donate-options{display:flex;flex-direction:column;gap:.75rem}
+    .donate-btn{display:flex;align-items:center;gap:12px;padding:.875rem 1.25rem;border-radius:10px;text-decoration:none;font-size:.875rem;font-weight:600;border:none;cursor:pointer;transition:opacity .15s;width:100%;font-family:'Inter',sans-serif}
+    .donate-btn:hover{opacity:.88}
+    .donate-btn small{display:block;font-size:.75rem;font-weight:400;opacity:.75}
+    .gh{background:#24292F;color:#fff}.pp{background:#003087;color:#fff}.du{background:#1a1a2e;color:#fff}
+    .donate-btn .txt{text-align:left;line-height:1.2}
+
+    .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.65);align-items:center;justify-content:center}
+    .modal-overlay.open{display:flex}
+    .modal-box{background:#fff;border-radius:20px;padding:2rem;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+    .modal-box h3{font-size:1.1rem;font-weight:700;margin-bottom:.25rem}
+    .modal-box p{font-size:.85rem;color:var(--g600);margin-bottom:1rem}
+    .modal-box img{width:100%;max-width:260px;border-radius:12px}
+    .modal-close{display:block;margin:1rem auto 0;padding:.5rem 1.5rem;background:var(--g100);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.875rem;font-weight:600;cursor:pointer;color:var(--g700)}
+
+    footer{background:var(--g900);padding:3rem 2rem;text-align:center}
+    footer .fb{font-size:1rem;font-weight:800;color:var(--accent)}
+    footer p{font-size:.8rem;color:var(--g400);margin-top:.5rem}
+    footer nav{margin-top:1.25rem;display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;background:none;border:none;position:static}
+    footer nav a{font-size:.8rem;color:var(--g400);text-decoration:none}footer nav a:hover{color:#fff}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Mario&nbsp;Navas</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#support">Support</a>
+      <a href="https://github.com/mnavas" target="_blank" class="btn btn-primary">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="eyebrow">👋 Free &amp; open source</span>
+  <h1>Small, useful apps<br/><span class="hl">built to solve real problems</span></h1>
+  <p>I build free, open-source desktop and self-hosted tools — no accounts, no cloud, no telemetry. Everything runs on your own machine.</p>
+  <div class="hero-meta">
+    <span>🖥 Desktop &amp; self-hosted</span>
+    <span>🔒 100% local</span>
+    <span>🐍 Python · Qt · Docker</span>
+    <span>📄 Open source</span>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-inner">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">What I've been building</h2>
+    <p class="section-sub">Each one is free, open source, and runs entirely on your machine.</p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>image-editor</h3>
+        <p>A photo editor with Photoshop-grade tools and phone-app ease of use — erase people, edit only part of a picture, curves, colour grading, reshape, film looks — that always saves at full original resolution.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">OpenCV</span></div>
+        <div class="links">
+          <a class="open" href="https://mnavas.github.io/image-editor/" target="_blank">Open →</a>
+          <a class="repo" href="https://github.com/mnavas/image-editor" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🖼</div>
+        <h3>instax-printing</h3>
+        <p>Arrange three photos as instax-mini cards on a single print-ready 4R (15×10 cm) sheet — real white border and cut marks. Print three instax for the price of one photo.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Print</span></div>
+        <div class="links">
+          <a class="open" href="https://mnavas.github.io/instax-printing/" target="_blank">Open →</a>
+          <a class="repo" href="https://github.com/mnavas/instax-printing" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🗂</div>
+        <h3>image-selector</h3>
+        <p>Keyboard-driven photo triage and editing — browse, sort, and edit without leaving the keyboard. 30 film &amp; camera looks, AI-assisted edits via Claude or Ollama, non-destructive.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">AI</span></div>
+        <div class="links">
+          <a class="open" href="https://mnavas.github.io/image-selector/" target="_blank">Open →</a>
+          <a class="repo" href="https://github.com/mnavas/image-selector" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎬</div>
+        <h3>VideoBuilder</h3>
+        <p>Build videos from clips and photos on one simple timeline — drag, trim, crossfade, add titles and music, and export to MP4 with ffmpeg. A slideshow maker and light video editor in one.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PySide6</span><span class="tag">ffmpeg</span></div>
+        <div class="links">
+          <a class="open" href="https://mnavas.github.io/videobuilder/" target="_blank">Open →</a>
+          <a class="repo" href="https://github.com/mnavas/videobuilder" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h3>QuizBuilder</h3>
+        <p>Build and run your own online assessments — rich questions with audio and video, auto-scoring and manual review, fully self-hosted with Docker. Your data stays yours.</p>
+        <div class="tags"><span class="tag">Self-hosted</span><span class="tag">Docker</span><span class="tag">Web</span></div>
+        <div class="links">
+          <a class="open" href="https://mnavas.github.io/quizbuilder/" target="_blank">Open →</a>
+          <a class="repo" href="https://github.com/mnavas/quizbuilder" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section support" id="support">
+  <div class="section-inner">
+    <div class="section-label">Support</div>
+    <div class="support-inner">
+      <div class="support-text">
+        <h2 class="section-title">Support the work</h2>
+        <p>All of these are built and maintained as side projects — free and open source, with no company or VC behind them.</p>
+        <p>If something here saves you time or money, a small contribution helps keep it maintained and improving. Thank you!</p>
+        <p class="fine">All contributions go directly to the developer.</p>
+      </div>
+      <div class="donate-card">
+        <h3>Choose how to support</h3>
+        <div class="donate-options">
+          <a href="https://github.com/sponsors/mnavas" target="_blank" class="donate-btn gh">
+            <span>♥</span><span class="txt">GitHub Sponsors<small>Monthly or one-time via GitHub</small></span>
+          </a>
+          <a href="https://paypal.me/warionv" target="_blank" class="donate-btn pp">
+            <span>💳</span><span class="txt">PayPal<small>paypal.me/warionv</small></span>
+          </a>
+          <button class="donate-btn du" onclick="document.getElementById('deuna-modal').classList.add('open')">
+            <span>📱</span><span class="txt">De Una · Banco Pichincha<small>Pago con QR — Ecuador</small></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fb">Mario Navas</div>
+  <p>Free &amp; open-source apps · everything runs on your machine</p>
+  <nav>
+    <a href="https://github.com/mnavas" target="_blank">GitHub</a>
+    <a href="#projects">Projects</a>
+    <a href="#support">Support</a>
+  </nav>
+</footer>
+
+<div class="modal-overlay" id="deuna-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <h3>De Una · Banco Pichincha</h3>
+    <p>Escanea el QR con tu app bancaria para enviar tu aporte.<br>¡Muchas gracias!</p>
+    <img src="assets/deuna-qr.png" alt="QR De Una — Banco Pichincha" />
+    <button class="modal-close" onclick="document.getElementById('deuna-modal').classList.remove('open')">Cerrar</button>
+  </div>
+</div>
+
+</body>
+</html>
