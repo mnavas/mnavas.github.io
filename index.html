@@ -53,6 +53,8 @@
     .card .links a{font-size:.85rem;font-weight:600;text-decoration:none;padding:.5rem .9rem;border-radius:8px}
     .card .links .open{background:var(--accent);color:#fff}.card .links .open:hover{background:var(--accent-dark)}
     .card .links .repo{background:var(--g100);color:var(--g700);border:1px solid var(--g200)}.card .links .repo:hover{border-color:var(--accent);color:var(--accent)}
+    .card .status{margin-top:.5rem;display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--accent-dark);background:var(--accent-pale);border:1px solid #7C5CFC33;padding:.45rem .8rem;border-radius:8px;align-self:flex-start}
+    .card.wip{border-style:dashed}
 
     .support{background:var(--g50)}
     .support-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:2.5rem}
@@ -191,6 +193,14 @@
           <a class="open" href="https://habitas-games.github.io/nano-bot-python/" target="_blank">Open →</a>
           <a class="repo" href="https://github.com/Habitas-Games/nano-bot-python" target="_blank">GitHub</a>
         </div>
+      </div>
+
+      <div class="card wip">
+        <div class="card-icon">🐝</div>
+        <h3>Questbee</h3>
+        <p>A self-hosted, offline-first field data collection platform for organizations that need data sovereignty, offline reliability, and white-labeling — deploy on your own infrastructure with a single <code style="font-family:'JetBrains Mono',monospace;font-size:.85em">docker-compose up</code>, no external cloud accounts.</p>
+        <div class="tags"><span class="tag">Self-hosted</span><span class="tag">Docker</span><span class="tag">Offline-first</span></div>
+        <span class="status">🚧 In development · seeking pilot partners</span>
       </div>
 
     </div>
