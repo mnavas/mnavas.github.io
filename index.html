@@ -1,238 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mario Navas — Projects</title>
-  <meta name="description" content="Free and open-source desktop and self-hosted apps by Mario Navas (@mnavas): a full-resolution photo editor, instax printing, photo triage, a video editor, and self-hosted assessments." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root{
-      --accent:#7C5CFC; --accent-dark:#5B3EE8; --accent-pale:#F3F0FF;
-      --g50:#FAFAFB; --g100:#F3F3F5; --g200:#E6E5EA; --g400:#A5A3AE;
-      --g600:#56545F; --g700:#413F49; --g800:#2A2833; --g900:#17161E; --white:#fff; --radius:14px;
-    }
-    html{scroll-behavior:smooth}
-    body{font-family:'Inter',sans-serif;color:var(--g800);background:var(--white);line-height:1.6}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mario Navas — Projects</title>
+<meta name="description" content="Free and open-source desktop and self-hosted apps by Mario Navas (@mnavas): a full-resolution photo editor, a self-hosted data platform, restaurant ordering, a video editor, an AI programming game, and more." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1922;--muted:#5b5866;--line:#e6e5ea;--bg:#fff;--g50:#faf9fc;--accent:#7C5CFC}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;height:100%}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;height:100%;overflow-x:hidden}
+a{text-decoration:none}
+img{max-width:100%;display:block}
 
-    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--g200)}
-    .nav-inner{padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
-    .nav-brand{font-size:1.15rem;font-weight:800;color:var(--accent);text-decoration:none}
-    .nav-links{display:flex;gap:1.75rem;align-items:center}
-    .nav-links a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--g600)}
-    .nav-links a:hover{color:var(--g900)}
-    .btn{display:inline-flex;align-items:center;gap:6px;padding:.5rem 1.25rem;border-radius:8px;font-size:.875rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:.15s}
-    .btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-dark)}
-    @media(max-width:640px){.nav-links a:not(.btn){display:none}}
+/* top bar */
+.top{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.5rem;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .brand{font-weight:800;color:var(--ink);font-size:1.05rem}
+.top .right{display:flex;gap:1.25rem;align-items:center}
+.top .right a{font-size:.85rem;font-weight:600;color:var(--muted)}
+.top .right a.gh{background:var(--ink);color:#fff;padding:.45rem 1rem;border-radius:8px}
+.top .right a:hover{color:var(--ink)} .top .right a.gh:hover{opacity:.88;color:#fff}
 
-    .hero{background:linear-gradient(160deg,var(--accent-pale) 0%,var(--white) 60%);padding:5rem 2rem 3.5rem;text-align:center}
-    .hero .eyebrow{display:inline-block;background:var(--accent-pale);border:1px solid #7C5CFC55;color:var(--accent-dark);font-size:.8rem;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:1.25rem}
-    .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--g900);line-height:1.15;max-width:760px;margin:0 auto .9rem}
-    .hero h1 .hl{color:var(--accent)}
-    .hero p{font-size:1.1rem;color:var(--g600);max-width:600px;margin:0 auto 2rem}
-    .hero-meta{font-size:.8rem;color:var(--g400);display:flex;justify-content:center;gap:1.4rem;flex-wrap:wrap}
+/* dot nav */
+.dots{position:fixed;right:1.1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem}
+.dots a{width:10px;height:10px;border-radius:50%;background:#cfcdd8;transition:.2s;border:2px solid transparent}
+.dots a:hover{background:var(--ink);transform:scale(1.2)}
+@media(max-width:820px){.dots{display:none}}
 
-    .section{padding:4.5rem 2rem}
-    .section-inner{max-width:1080px;margin:0 auto}
-    .section-label{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
-    .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--g900);margin-bottom:.75rem}
-    .section-sub{color:var(--g600);max-width:560px}
+/* slides */
+.slide{min-height:100vh;min-height:100dvh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 3rem;position:relative}
+.slide.project{background:
+  radial-gradient(1100px 600px at 100% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%),
+  radial-gradient(900px 500px at 0% 100%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 55%),
+  var(--bg)}
+.slide:nth-child(even).project{background:
+  radial-gradient(1100px 600px at 0% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%),
+  var(--g50)}
+.inner{max-width:1120px;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:3.2rem;align-items:center}
+.slide.flip .inner .frame{order:2}
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
-    .card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--g200);border-radius:var(--radius);padding:1.6rem;transition:box-shadow .2s,border-color .2s,transform .2s}
-    .card:hover{box-shadow:0 8px 30px rgba(90,60,230,.10);border-color:var(--accent);transform:translateY(-2px)}
-    .card-icon{width:52px;height:52px;border-radius:12px;background:var(--accent-pale);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1rem}
-    .card h3{font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
-    .card p{font-size:.9rem;color:var(--g600);line-height:1.6;flex:1}
-    .card .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
-    .tag{font-size:.7rem;font-weight:600;color:var(--g600);background:var(--g100);border:1px solid var(--g200);padding:2px 8px;border-radius:999px;font-family:'JetBrains Mono',monospace}
-    .card .links{display:flex;gap:.6rem;margin-top:.5rem}
-    .card .links a{font-size:.85rem;font-weight:600;text-decoration:none;padding:.5rem .9rem;border-radius:8px}
-    .card .links .open{background:var(--accent);color:#fff}.card .links .open:hover{background:var(--accent-dark)}
-    .card .links .repo{background:var(--g100);color:var(--g700);border:1px solid var(--g200)}.card .links .repo:hover{border-color:var(--accent);color:var(--accent)}
-    .card .status{margin-top:.5rem;display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--accent-dark);background:var(--accent-pale);border:1px solid #7C5CFC33;padding:.45rem .8rem;border-radius:8px;align-self:flex-start}
-    .card.wip{border-style:dashed}
+/* window frame + screenshot */
+.frame{border-radius:16px;overflow:hidden;background:#1c1b24;border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 30px 70px -20px color-mix(in srgb, var(--accent) 45%, rgba(20,15,40,.5))}
+.bar{display:flex;align-items:center;gap:7px;padding:.6rem .85rem;background:#151420}
+.bar .d{width:11px;height:11px;border-radius:50%}
+.bar .r{background:#ff5f57}.bar .y{background:#febc2e}.bar .g{background:#28c840}
+.bar .url{margin-left:.6rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8b899a}
+.shot{aspect-ratio:16/10;background:#0e0d15}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:center}
 
-    .support{background:var(--g50)}
-    .support-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:2.5rem}
-    @media(max-width:768px){.support-inner{grid-template-columns:1fr}}
-    .support-text p{color:var(--g600);margin-bottom:1rem}
-    .support-text p.fine{font-size:.85rem;color:var(--g400)}
-    .donate-card{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius);padding:2rem}
-    .donate-card h3{font-size:1rem;font-weight:700;margin-bottom:1.25rem}
-    .donate-options{display:flex;flex-direction:column;gap:.75rem}
-    .donate-btn{display:flex;align-items:center;gap:12px;padding:.875rem 1.25rem;border-radius:10px;text-decoration:none;font-size:.875rem;font-weight:600;border:none;cursor:pointer;transition:opacity .15s;width:100%;font-family:'Inter',sans-serif}
-    .donate-btn:hover{opacity:.88}
-    .donate-btn small{display:block;font-size:.75rem;font-weight:400;opacity:.75}
-    .gh{background:#24292F;color:#fff}.pp{background:#003087;color:#fff}.du{background:#1a1a2e;color:#fff}
-    .donate-btn .txt{text-align:left;line-height:1.2}
+/* text column */
+.meta .count{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.05em;margin-bottom:.6rem}
+.meta h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.1;display:flex;align-items:center;gap:.6rem}
+.meta h2 .emoji{font-size:.9em}
+.meta .tagline{font-size:1.1rem;font-weight:600;color:var(--accent);margin:.5rem 0 .9rem}
+.meta .desc{font-size:1rem;color:var(--muted);line-height:1.7;max-width:46ch}
+.meta .desc code{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--ink);padding:.1em .4em;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:.85em}
+.meta .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 1.4rem}
+.tag{font-size:.72rem;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);padding:3px 10px;border-radius:999px;font-family:'JetBrains Mono',monospace}
+.links{display:flex;gap:.75rem}
+.links a{font-size:.92rem;font-weight:700;padding:.7rem 1.3rem;border-radius:10px;transition:.15s}
+.links .open{background:var(--accent);color:#fff}.links .open:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.links .repo{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.links .repo:hover{border-color:var(--accent);color:var(--accent)}
 
-    .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.65);align-items:center;justify-content:center}
-    .modal-overlay.open{display:flex}
-    .modal-box{background:#fff;border-radius:20px;padding:2rem;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.25)}
-    .modal-box h3{font-size:1.1rem;font-weight:700;margin-bottom:.25rem}
-    .modal-box p{font-size:.85rem;color:var(--g600);margin-bottom:1rem}
-    .modal-box img{width:100%;max-width:260px;border-radius:12px}
-    .modal-close{display:block;margin:1rem auto 0;padding:.5rem 1.5rem;background:var(--g100);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.875rem;font-weight:600;cursor:pointer;color:var(--g700)}
+/* hero */
+.hero{background:radial-gradient(1200px 700px at 50% -10%, #efeaff, #fff 60%)}
+.hero .inner-h{max-width:820px;text-align:center;padding:0 1rem}
+.hero .eyebrow{display:inline-block;background:#efeaff;border:1px solid #7C5CFC44;color:#5B3EE8;font-size:.8rem;font-weight:700;padding:5px 14px;border-radius:999px;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;line-height:1.08;letter-spacing:-.02em}
+.hero h1 .hl{color:#7C5CFC}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:620px;margin:1.2rem auto 0}
+.hero .meta-row{margin-top:1.6rem;display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;font-size:.82rem;color:#8b899a}
+.scrollhint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:#a5a3ae;font-size:.8rem;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:.3rem;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
-    footer{background:var(--g900);padding:3rem 2rem;text-align:center}
-    footer .fb{font-size:1rem;font-weight:800;color:var(--accent)}
-    footer p{font-size:.8rem;color:var(--g400);margin-top:.5rem}
-    footer nav{margin-top:1.25rem;display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;background:none;border:none;position:static}
-    footer nav a{font-size:.8rem;color:var(--g400);text-decoration:none}footer nav a:hover{color:#fff}
-  </style>
+/* support + footer */
+.support{background:var(--g50);flex-direction:column}
+.support .s-inner{max-width:900px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.support h2{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;margin-bottom:1rem}
+.support p{color:var(--muted);margin-bottom:1rem} .support p.fine{font-size:.85rem;color:#a5a3ae}
+.donate{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:2rem}
+.donate h3{font-size:1rem;font-weight:700;margin-bottom:1.1rem}
+.donate .opt{display:flex;flex-direction:column;gap:.7rem}
+.dbtn{display:flex;align-items:center;gap:12px;padding:.85rem 1.2rem;border-radius:10px;font-size:.875rem;font-weight:700;border:none;cursor:pointer;color:#fff;width:100%;font-family:'Inter',sans-serif}
+.dbtn small{display:block;font-weight:400;opacity:.75;font-size:.75rem} .dbtn .t{text-align:left;line-height:1.2}
+.gh2{background:#24292F}.pp{background:#003087}.du{background:#1a1a2e}
+@media(max-width:820px){.support .s-inner{grid-template-columns:1fr}}
+footer{background:#141320;color:#a5a3ae;text-align:center;padding:2.5rem 2rem;scroll-snap-align:end}
+footer .fb{color:#fff;font-weight:800;font-size:1.05rem} footer p{font-size:.8rem;margin-top:.4rem}
+footer a{color:#cfcdd8;font-size:.82rem} footer a:hover{color:#fff}
+
+/* modal */
+.overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.7);align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.box{background:#fff;border-radius:20px;padding:2rem;max-width:340px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.box h3{font-weight:700;margin-bottom:.25rem} .box p{font-size:.85rem;color:var(--muted);margin-bottom:1rem}
+.box img{width:100%;max-width:260px;border-radius:12px}
+.box button{margin-top:1rem;padding:.5rem 1.5rem;background:#f0eff4;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+
+/* mobile */
+@media(max-width:820px){
+  .inner{grid-template-columns:1fr;gap:1.6rem}
+  .slide.flip .inner .frame{order:0}
+  .slide{padding:5rem 1.25rem 2.5rem}
+  .meta .desc{max-width:none}
+}
+</style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">Mario&nbsp;Navas</a>
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#support">Support</a>
-      <a href="https://github.com/mnavas" target="_blank" class="btn btn-primary">GitHub</a>
-    </div>
+<div class="top">
+  <span class="brand">Mario&nbsp;Navas</span>
+  <div class="right">
+    <a href="#support">Support</a>
+    <a class="gh" href="https://github.com/mnavas" target="_blank" rel="noopener">GitHub</a>
   </div>
-</nav>
+</div>
 
-<section class="hero">
-  <span class="eyebrow">👋 Free &amp; open source</span>
-  <h1>Small, useful apps<br/><span class="hl">built to solve real problems</span></h1>
-  <p>I build free, open-source desktop and self-hosted tools — no accounts, no cloud, no telemetry. Everything runs on your own machine.</p>
-  <div class="hero-meta">
-    <span>🖥 Desktop &amp; self-hosted</span>
-    <span>🔒 100% local</span>
-    <span>🐍 Python · Qt · Docker</span>
-    <span>📄 Open source</span>
+<div class="dots"><a href="#questbee" aria-label="Questbee"></a><a href="#image-editor" aria-label="image-editor"></a><a href="#elgatomenu" aria-label="ElGatoMenu"></a><a href="#quizbuilder" aria-label="QuizBuilder"></a><a href="#nano-bot" aria-label="nano-bot"></a><a href="#videobuilder" aria-label="VideoBuilder"></a><a href="#image-selector" aria-label="image-selector"></a><a href="#instax-printing" aria-label="instax-printing"></a></div>
+
+<section class="slide hero" id="top">
+  <div class="inner-h">
+    <span class="eyebrow">👋 Free &amp; open source</span>
+    <h1>I build small, useful apps that <span class="hl">respect your data</span>.</h1>
+    <p>Desktop and self-hosted tools — no accounts, no cloud, no telemetry. Everything runs on your own machine. Scroll to explore.</p>
+    <div class="meta-row"><span>🖥 Desktop &amp; self-hosted</span><span>🔒 100% local</span><span>🐍 Python · Qt · Docker</span></div>
   </div>
+  <a class="scrollhint" href="#questbee"><span>Scroll</span><span>↓</span></a>
 </section>
 
-<section class="section" id="projects">
-  <div class="section-inner">
-    <div class="section-label">Projects</div>
-    <h2 class="section-title">What I've been building</h2>
-    <p class="section-sub">Each one is free, open source, and runs entirely on your machine.</p>
-
-    <div class="grid">
-
-      <div class="card">
-        <div class="card-icon">🐝</div>
-        <h3>Questbee</h3>
-        <p>Surveys &amp; field data collection on your own servers — build forms in the browser, collect data on Android with no internet, and sync when connectivity returns. Full data sovereignty, no per-submission fees. Deploy with a single <code style="font-family:'JetBrains Mono',monospace;font-size:.85em">docker-compose up</code>.</p>
+  <section class="slide project" id="questbee" style="--accent:#E0A21A">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">Questbee</span></div>
+        <div class="shot"><img src="assets/projects/questbee.jpg" alt="Questbee screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">01 / 08</div>
+        <h2><span class="emoji">🐝</span>Questbee</h2>
+        <p class="tagline">Surveys &amp; field data collection, on your own servers</p>
+        <p class="desc">A self-hosted, offline-first data collection platform — build forms in the browser, collect on Android with no internet, and sync when connectivity returns. Full data sovereignty, no per-submission fees, one <code>docker-compose up</code>.</p>
         <div class="tags"><span class="tag">Self-hosted</span><span class="tag">Docker</span><span class="tag">Offline-first</span></div>
         <div class="links">
-          <a class="open" href="https://questbee.github.io/page/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/Questbee/community" target="_blank">GitHub</a>
+          <a class="open" href="https://questbee.github.io/page/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/Questbee/community" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">🎨</div>
-        <h3>image-editor</h3>
-        <p>A photo editor with Photoshop-grade tools and phone-app ease of use — erase people, edit only part of a picture, curves, colour grading, reshape, film looks — that always saves at full original resolution.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">OpenCV</span></div>
+    </div>
+  </section>
+  <section class="slide project flip" id="image-editor" style="--accent:#7C5CFC">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">image-editor</span></div>
+        <div class="shot"><img src="assets/projects/image-editor.png" alt="image-editor screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">02 / 08</div>
+        <h2><span class="emoji">🎨</span>image-editor</h2>
+        <p class="tagline">Photoshop-grade photo editing, phone-app simple</p>
+        <p class="desc">Erase people, edit only part of a picture, curves, colour grading, reshape and film looks — with AI (SAM + LaMa) — that always saves at full original resolution, non-destructively.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">OpenCV</span><span class="tag">AI</span></div>
         <div class="links">
-          <a class="open" href="https://mnavas.github.io/image-editor/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/mnavas/image-editor" target="_blank">GitHub</a>
+          <a class="open" href="https://mnavas.github.io/image-editor/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/mnavas/image-editor" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">🐱</div>
-        <h3>ElGatoMenu</h3>
-        <p>QR ordering for restaurants — a digital menu, OCR payment verification, a live kitchen display, and staff management. Fully self-hosted with Docker; your restaurant's data stays yours.</p>
+    </div>
+  </section>
+  <section class="slide project" id="elgatomenu" style="--accent:#C0392B">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">ElGatoMenu</span></div>
+        <div class="shot"><img src="assets/projects/elgatomenu.jpg" alt="ElGatoMenu screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">03 / 08</div>
+        <h2><span class="emoji">🐱</span>ElGatoMenu</h2>
+        <p class="tagline">QR ordering for restaurants</p>
+        <p class="desc">A digital menu, OCR payment verification, a live kitchen display, and staff management — fully self-hosted with Docker. Your restaurant's data stays yours.</p>
         <div class="tags"><span class="tag">Self-hosted</span><span class="tag">Docker</span><span class="tag">Web</span></div>
         <div class="links">
-          <a class="open" href="https://mnavas.github.io/elgatomenu-page/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/mnavas/elgatomenu" target="_blank">GitHub</a>
+          <a class="open" href="https://mnavas.github.io/elgatomenu-page/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/mnavas/elgatomenu" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">📝</div>
-        <h3>QuizBuilder</h3>
-        <p>Build and run your own online assessments — rich questions with audio and video, auto-scoring and manual review, fully self-hosted with Docker. Your data stays yours.</p>
+    </div>
+  </section>
+  <section class="slide project flip" id="quizbuilder" style="--accent:#2E6FE0">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">QuizBuilder</span></div>
+        <div class="shot"><img src="assets/projects/quizbuilder.jpg" alt="QuizBuilder screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">04 / 08</div>
+        <h2><span class="emoji">📝</span>QuizBuilder</h2>
+        <p class="tagline">Self-hosted online assessments</p>
+        <p class="desc">Build and run your own online assessments — rich questions with audio and video, auto-scoring and manual review, fully self-hosted with Docker.</p>
         <div class="tags"><span class="tag">Self-hosted</span><span class="tag">Docker</span><span class="tag">Web</span></div>
         <div class="links">
-          <a class="open" href="https://mnavas.github.io/quizbuilder/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/mnavas/quizbuilder" target="_blank">GitHub</a>
+          <a class="open" href="https://mnavas.github.io/quizbuilder/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/mnavas/quizbuilder" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">🤖</div>
-        <h3>nano-bot</h3>
-        <p>A turn-based AI programming competition set inside a simulated human body. Write a single Python strategy to command a fleet of nanobots across living tissue — collect energy, claim Habitas Points, and outscore your opponent. A Habitas Games project.</p>
+    </div>
+  </section>
+  <section class="slide project" id="nano-bot" style="--accent:#12B39B">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">nano-bot</span></div>
+        <div class="shot"><img src="assets/projects/nano-bot.png" alt="nano-bot screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">05 / 08</div>
+        <h2><span class="emoji">🤖</span>nano-bot</h2>
+        <p class="tagline">An AI programming competition inside the human body</p>
+        <p class="desc">Write a single Python strategy to command a fleet of nanobots across living tissue — collect energy, claim Habitas Points, and outscore your opponent over 1500 turns. A Habitas Games project.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">pygame</span><span class="tag">AI contest</span></div>
         <div class="links">
-          <a class="open" href="https://habitas-games.github.io/nano-bot-python/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/Habitas-Games/nano-bot-python" target="_blank">GitHub</a>
+          <a class="open" href="https://habitas-games.github.io/nano-bot-python/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/Habitas-Games/nano-bot-python" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">🎬</div>
-        <h3>VideoBuilder</h3>
-        <p>Build videos from clips and photos on one simple timeline — drag, trim, crossfade, add titles and music, and export to MP4 with ffmpeg. A slideshow maker and light video editor in one.</p>
+    </div>
+  </section>
+  <section class="slide project flip" id="videobuilder" style="--accent:#F5731F">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">VideoBuilder</span></div>
+        <div class="shot"><img src="assets/projects/videobuilder.jpg" alt="VideoBuilder screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">06 / 08</div>
+        <h2><span class="emoji">🎬</span>VideoBuilder</h2>
+        <p class="tagline">A simple timeline video editor &amp; slideshow maker</p>
+        <p class="desc">Build videos from clips and photos on one simple timeline — drag, trim, crossfade, add titles and music, and export to MP4 with ffmpeg.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">PySide6</span><span class="tag">ffmpeg</span></div>
         <div class="links">
-          <a class="open" href="https://mnavas.github.io/videobuilder/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/mnavas/videobuilder" target="_blank">GitHub</a>
+          <a class="open" href="https://mnavas.github.io/videobuilder/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/mnavas/videobuilder" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">🗂</div>
-        <h3>image-selector</h3>
-        <p>Keyboard-driven photo triage and editing — browse, sort, and edit without leaving the keyboard. 30 film &amp; camera looks, AI-assisted edits via Claude or Ollama, non-destructive.</p>
+    </div>
+  </section>
+  <section class="slide project" id="image-selector" style="--accent:#14B8A6">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">image-selector</span></div>
+        <div class="shot"><img src="assets/projects/image-selector.jpg" alt="image-selector screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">07 / 08</div>
+        <h2><span class="emoji">🗂</span>image-selector</h2>
+        <p class="tagline">Keyboard-driven photo triage &amp; editing</p>
+        <p class="desc">Browse, sort, and edit photos without leaving the keyboard — 30 film & camera looks, AI-assisted edits via Claude or Ollama, fully non-destructive.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">AI</span></div>
         <div class="links">
-          <a class="open" href="https://mnavas.github.io/image-selector/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/mnavas/image-selector" target="_blank">GitHub</a>
+          <a class="open" href="https://mnavas.github.io/image-selector/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/mnavas/image-selector" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon">🖼</div>
-        <h3>instax-printing</h3>
-        <p>Arrange three photos as instax-mini cards on a single print-ready 4R (15×10 cm) sheet — real white border and cut marks. Print three instax for the price of one photo.</p>
+    </div>
+  </section>
+  <section class="slide project flip" id="instax-printing" style="--accent:#E5397E">
+    <div class="inner">
+      <div class="frame">
+        <div class="bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="url">instax-printing</span></div>
+        <div class="shot"><img src="assets/projects/instax-printing.png" alt="instax-printing screenshot" loading="lazy"></div>
+      </div>
+      <div class="meta">
+        <div class="count">08 / 08</div>
+        <h2><span class="emoji">🖼</span>instax-printing</h2>
+        <p class="tagline">Three instax minis on one 4R print</p>
+        <p class="desc">Arrange three photos as instax-mini cards on a single print-ready 4R (15×10 cm) sheet — real white border and cut marks. Three instax for the price of one photo.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Print</span></div>
         <div class="links">
-          <a class="open" href="https://mnavas.github.io/instax-printing/" target="_blank">Open →</a>
-          <a class="repo" href="https://github.com/mnavas/instax-printing" target="_blank">GitHub</a>
+          <a class="open" href="https://mnavas.github.io/instax-printing/" target="_blank" rel="noopener">Open&nbsp;→</a>
+          <a class="repo" href="https://github.com/mnavas/instax-printing" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section support" id="support">
-  <div class="section-inner">
-    <div class="section-label">Support</div>
-    <div class="support-inner">
-      <div class="support-text">
-        <h2 class="section-title">Support the work</h2>
-        <p>All of these are built and maintained as side projects — free and open source, with no company or VC behind them.</p>
-        <p>If something here saves you time or money, a small contribution helps keep it maintained and improving. Thank you!</p>
-        <p class="fine">All contributions go directly to the developer.</p>
-      </div>
-      <div class="donate-card">
-        <h3>Choose how to support</h3>
-        <div class="donate-options">
-          <a href="https://github.com/sponsors/mnavas" target="_blank" class="donate-btn gh">
-            <span>♥</span><span class="txt">GitHub Sponsors<small>Monthly or one-time via GitHub</small></span>
-          </a>
-          <a href="https://paypal.me/warionv" target="_blank" class="donate-btn pp">
-            <span>💳</span><span class="txt">PayPal<small>paypal.me/warionv</small></span>
-          </a>
-          <button class="donate-btn du" onclick="document.getElementById('deuna-modal').classList.add('open')">
-            <span>📱</span><span class="txt">De Una · Banco Pichincha<small>Pago con QR — Ecuador</small></span>
-          </button>
-        </div>
+<section class="slide support" id="support">
+  <div class="s-inner">
+    <div>
+      <h2>Support the work</h2>
+      <p>These are built and maintained as side projects — free and open source, with no company or VC behind them.</p>
+      <p>If something here saves you time or money, a small contribution helps keep it going. Thank you!</p>
+      <p class="fine">All contributions go directly to the developer.</p>
+    </div>
+    <div class="donate">
+      <h3>Choose how to support</h3>
+      <div class="opt">
+        <a class="dbtn gh2" href="https://github.com/sponsors/mnavas" target="_blank" rel="noopener"><span>♥</span><span class="t">GitHub Sponsors<small>Monthly or one-time</small></span></a>
+        <a class="dbtn pp" href="https://paypal.me/warionv" target="_blank" rel="noopener"><span>💳</span><span class="t">PayPal<small>paypal.me/warionv</small></span></a>
+        <button class="dbtn du" onclick="document.getElementById('deuna').classList.add('open')"><span>📱</span><span class="t">De Una · Banco Pichincha<small>Pago con QR — Ecuador</small></span></button>
       </div>
     </div>
   </div>
@@ -241,21 +308,22 @@
 <footer>
   <div class="fb">Mario Navas</div>
   <p>Free &amp; open-source apps · everything runs on your machine</p>
-  <nav>
-    <a href="https://github.com/mnavas" target="_blank">GitHub</a>
-    <a href="#projects">Projects</a>
-    <a href="#support">Support</a>
-  </nav>
+  <p style="margin-top:1rem"><a href="https://github.com/mnavas" target="_blank" rel="noopener">GitHub</a> · <a href="#top">Back to top</a></p>
 </footer>
 
-<div class="modal-overlay" id="deuna-modal" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal-box">
+<div class="overlay" id="deuna" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="box">
     <h3>De Una · Banco Pichincha</h3>
     <p>Escanea el QR con tu app bancaria para enviar tu aporte.<br>¡Muchas gracias!</p>
     <img src="assets/deuna-qr.png" alt="QR De Una — Banco Pichincha" />
-    <button class="modal-close" onclick="document.getElementById('deuna-modal').classList.remove('open')">Cerrar</button>
+    <button onclick="document.getElementById('deuna').classList.remove('open')">Cerrar</button>
   </div>
 </div>
 
+<script>
+// highlight the active dot as you scroll
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;document.querySelectorAll('.dots a').forEach(a=>a.style.background=a.getAttribute('href')==='#'+id?'#1a1922':'');}})},{threshold:.6});
+document.querySelectorAll('.slide.project').forEach(s=>io.observe(s));
+</script>
 </body>
 </html>
