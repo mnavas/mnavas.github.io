@@ -55,6 +55,12 @@ PROJECTS = [
          open="https://mnavas.github.io/instax-printing/", repo="https://github.com/mnavas/instax-printing"),
 ]
 
+BOOK = dict(id="book", emoji="📖", name="User Story", accent="#1F7A8C",
+            cover="assets/book-user-story.jpg",
+            tagline="A novel by Mario Navas",
+            quote="“You are not alone right now — you're talking to me.”",
+            url="https://a.co/d/06V3wTpe")
+
 def slide(p, i):
     flip = " flip" if i % 2 else ""
     tags = "".join(f'<span class="tag">{html.escape(t)}</span>' for t in p["tags"])
@@ -79,8 +85,26 @@ def slide(p, i):
     </div>
   </section>'''
 
-dots = "".join(f'<a href="#{p["id"]}" aria-label="{html.escape(p["name"])}"></a>' for p in PROJECTS)
-slides = "".join(slide(p, i) for i, p in enumerate(PROJECTS))
+def book_slide(b):
+    return f'''
+  <section class="slide book" id="{b['id']}" style="--accent:{b['accent']}">
+    <div class="inner">
+      <div class="bookcover"><img src="{b['cover']}" alt="{html.escape(b['name'])} book cover"></div>
+      <div class="meta">
+        <div class="count">Also — I wrote a book</div>
+        <h2><span class="emoji">{b['emoji']}</span>{html.escape(b['name'])}</h2>
+        <p class="tagline">{html.escape(b['tagline'])}</p>
+        <p class="desc quote">{html.escape(b['quote'])}</p>
+        <div class="links">
+          <a class="open" href="{b['url']}" target="_blank" rel="noopener">View on Amazon&nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>'''
+
+NAV = PROJECTS + [BOOK]
+dots = "".join(f'<a href="#{n["id"]}" title="{html.escape(n["name"])}" aria-label="{html.escape(n["name"])}"><span>{n["emoji"]}</span></a>' for n in NAV)
+slides = "".join(slide(p, i) for i, p in enumerate(PROJECTS)) + book_slide(BOOK)
 
 DOC = f'''<!DOCTYPE html>
 <html lang="en">
@@ -88,7 +112,7 @@ DOC = f'''<!DOCTYPE html>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mario Navas — Projects</title>
-<meta name="description" content="Free and open-source desktop and self-hosted apps by Mario Navas (@mnavas): a full-resolution photo editor, a self-hosted data platform, restaurant ordering, a video editor, an AI programming game, and more." />
+<meta name="description" content="Free and open-source desktop and self-hosted apps by Mario Navas (@mnavas): a full-resolution photo editor, a self-hosted data platform, restaurant ordering, a video editor, an AI programming game — and the novel User Story." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -109,15 +133,16 @@ img{{max-width:100%;display:block}}
 .top .right a.gh{{background:var(--ink);color:#fff;padding:.45rem 1rem;border-radius:8px}}
 .top .right a:hover{{color:var(--ink)}} .top .right a.gh:hover{{opacity:.88;color:#fff}}
 
-/* dot nav */
-.dots{{position:fixed;right:1.1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem}}
-.dots a{{width:10px;height:10px;border-radius:50%;background:#cfcdd8;transition:.2s;border:2px solid transparent}}
-.dots a:hover{{background:var(--ink);transform:scale(1.2)}}
+/* dot nav — emoji icons */
+.dots{{position:fixed;right:1.1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.55rem}}
+.dots a{{width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,.06);transition:transform .18s,border-color .18s,box-shadow .18s;filter:grayscale(.35) opacity(.75)}}
+.dots a:hover{{transform:scale(1.18);border-color:#bbb;filter:none}}
+.dots a.active{{filter:none;border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}}
 @media(max-width:820px){{.dots{{display:none}}}}
 
 /* slides */
 .slide{{min-height:100vh;min-height:100dvh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 3rem;position:relative}}
-.slide.project{{background:
+.slide.project,.slide.book{{background:
   radial-gradient(1100px 600px at 100% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%),
   radial-gradient(900px 500px at 0% 100%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 55%),
   var(--bg)}}
@@ -143,17 +168,24 @@ img{{max-width:100%;display:block}}
 .meta h2 .emoji{{font-size:.9em}}
 .meta .tagline{{font-size:1.1rem;font-weight:600;color:var(--accent);margin:.5rem 0 .9rem}}
 .meta .desc{{font-size:1rem;color:var(--muted);line-height:1.7;max-width:46ch}}
+.meta .desc.quote{{font-style:italic;font-size:1.15rem;color:var(--ink);border-left:3px solid var(--accent);padding-left:1rem}}
 .meta .desc code{{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--ink);padding:.1em .4em;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:.85em}}
 .meta .tags{{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 1.4rem}}
 .tag{{font-size:.72rem;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);padding:3px 10px;border-radius:999px;font-family:'JetBrains Mono',monospace}}
-.links{{display:flex;gap:.75rem}}
+.links{{display:flex;gap:.75rem;margin-top:1.4rem}}
 .links a{{font-size:.92rem;font-weight:700;padding:.7rem 1.3rem;border-radius:10px;transition:.15s}}
 .links .open{{background:var(--accent);color:#fff}}.links .open:hover{{filter:brightness(1.08);transform:translateY(-1px)}}
 .links .repo{{background:transparent;color:var(--ink);border:1.5px solid var(--line)}}.links .repo:hover{{border-color:var(--accent);color:var(--accent)}}
 
+/* book slide */
+.book .inner{{grid-template-columns:.8fr 1fr}}
+.bookcover{{display:flex;justify-content:center}}
+.bookcover img{{width:auto;max-height:62vh;border-radius:10px;box-shadow:0 30px 70px -18px color-mix(in srgb,var(--accent) 50%, rgba(20,15,40,.55))}}
+
 /* hero */
 .hero{{background:radial-gradient(1200px 700px at 50% -10%, #efeaff, #fff 60%)}}
-.hero .inner-h{{max-width:820px;text-align:center;padding:0 1rem}}
+.hero .inner-h{{max-width:820px;text-align:center;padding:0 1rem;display:flex;flex-direction:column;align-items:center}}
+.hero .avatar{{width:132px;height:132px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 14px 34px rgba(90,60,230,.28);margin-bottom:1.3rem}}
 .hero .eyebrow{{display:inline-block;background:#efeaff;border:1px solid #7C5CFC44;color:#5B3EE8;font-size:.8rem;font-weight:700;padding:5px 14px;border-radius:999px;margin-bottom:1.4rem}}
 .hero h1{{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;line-height:1.08;letter-spacing:-.02em}}
 .hero h1 .hl{{color:#7C5CFC}}
@@ -190,6 +222,8 @@ footer a{{color:#cfcdd8;font-size:.82rem}} footer a:hover{{color:#fff}}
 @media(max-width:820px){{
   .inner{{grid-template-columns:1fr;gap:1.6rem}}
   .slide.flip .inner .frame{{order:0}}
+  .book .inner{{grid-template-columns:1fr}}
+  .bookcover img{{max-height:46vh}}
   .slide{{padding:5rem 1.25rem 2.5rem}}
   .meta .desc{{max-width:none}}
 }}
@@ -200,6 +234,7 @@ footer a{{color:#cfcdd8;font-size:.82rem}} footer a:hover{{color:#fff}}
 <div class="top">
   <span class="brand">Mario&nbsp;Navas</span>
   <div class="right">
+    <a href="#book">Book</a>
     <a href="#support">Support</a>
     <a class="gh" href="https://github.com/mnavas" target="_blank" rel="noopener">GitHub</a>
   </div>
@@ -209,6 +244,7 @@ footer a{{color:#cfcdd8;font-size:.82rem}} footer a:hover{{color:#fff}}
 
 <section class="slide hero" id="top">
   <div class="inner-h">
+    <img class="avatar" src="assets/mario.jpg" alt="Mario Navas" />
     <span class="eyebrow">👋 Free &amp; open source</span>
     <h1>I build small, useful apps that <span class="hl">respect your data</span>.</h1>
     <p>Desktop and self-hosted tools — no accounts, no cloud, no telemetry. Everything runs on your own machine. Scroll to explore.</p>
@@ -240,7 +276,7 @@ footer a{{color:#cfcdd8;font-size:.82rem}} footer a:hover{{color:#fff}}
 <footer>
   <div class="fb">Mario Navas</div>
   <p>Free &amp; open-source apps · everything runs on your machine</p>
-  <p style="margin-top:1rem"><a href="https://github.com/mnavas" target="_blank" rel="noopener">GitHub</a> · <a href="#top">Back to top</a></p>
+  <p style="margin-top:1rem"><a href="https://github.com/mnavas" target="_blank" rel="noopener">GitHub</a> · <a href="#book">User Story (book)</a> · <a href="#top">Back to top</a></p>
 </footer>
 
 <div class="overlay" id="deuna" onclick="if(event.target===this)this.classList.remove('open')">
@@ -254,11 +290,11 @@ footer a{{color:#cfcdd8;font-size:.82rem}} footer a:hover{{color:#fff}}
 
 <script>
 // highlight the active dot as you scroll
-const io=new IntersectionObserver((es)=>{{es.forEach(e=>{{if(e.isIntersecting){{const id=e.target.id;document.querySelectorAll('.dots a').forEach(a=>a.style.background=a.getAttribute('href')==='#'+id?'#1a1922':'');}}}})}},{{threshold:.6}});
-document.querySelectorAll('.slide.project').forEach(s=>io.observe(s));
+const io=new IntersectionObserver((es)=>{{es.forEach(e=>{{if(e.isIntersecting){{const id=e.target.id;document.querySelectorAll('.dots a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));}}}})}},{{threshold:.6}});
+document.querySelectorAll('.slide.project,.slide.book').forEach(s=>io.observe(s));
 </script>
 </body>
 </html>'''
 
 OUT.write_text(DOC)
-print("wrote", OUT, len(DOC), "bytes;", len(PROJECTS), "project slides")
+print("wrote", OUT, len(DOC), "bytes;", len(PROJECTS), "projects + book")
