@@ -59,6 +59,12 @@ PROJECTS = [
          desc="Arrange three photos as instax-mini cards on a single print-ready 4R (15×10 cm) sheet — real white border and cut marks. Three instax for the price of one photo.",
          tags=["Python","PyQt6","Print"],
          open="https://mnavas.github.io/instax-printing/", repo="https://github.com/mnavas/instax-printing"),
+    dict(id="zune-manager", emoji="🎧", name="zune-manager", accent="#F57C00",
+         img="assets/projects/zune-manager.png",
+         tagline="Load albums onto your Zune HD from Linux",
+         desc="Point it at an album folder and it does the whole job in one command — canonical MusicBrainz metadata, Cover Art Archive artwork, FLAC→MP3 320, clean ID3 tags, USB upload — and it never leaves a duplicate artist behind.",
+         tags=["Python","MTP","MusicBrainz"],
+         open="https://mnavas.github.io/zune-manager/", repo="https://github.com/mnavas/zune-manager"),
 ]
 
 BOOK = dict(id="book", emoji="📖", name="User Story", accent="#1F7A8C",
