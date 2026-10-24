@@ -71,6 +71,12 @@ PROJECTS = [
          desc="Point it at an album folder and it does the whole job in one command — canonical MusicBrainz metadata, Cover Art Archive artwork, FLAC→MP3 320, clean ID3 tags, USB upload — and it never leaves a duplicate artist behind.",
          tags=["Python","MTP","MusicBrainz"],
          open="https://mnavas.github.io/zune-manager/", repo="https://github.com/mnavas/zune-manager"),
+    dict(id="audio-transcriber", emoji="🎙", name="audio-transcriber", accent="#4F46E5",
+         img="assets/projects/audio-transcriber.png",
+         tagline="Offline transcription with speaker labels",
+         desc="Turn conversation recordings into accurate, speaker-labeled text — in Spanish, English and Japanese — fully offline. Whisper (faster-whisper) transcribes while pyannote figures out who said what, with a CLI and a desktop GUI. Exports txt, srt, vtt and json; nothing ever leaves your machine.",
+         tags=["Python","Whisper","Offline","CLI & GUI"],
+         open="https://mnavas.github.io/audio-transcriber/", repo="https://github.com/mnavas/audio-transcriber"),
 ]
 
 BOOK = dict(id="book", emoji="📖", name="User Story", accent="#1F7A8C",
