@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 860" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <radialGradient id="mapg" cx="52%" cy="48%" r="70%">
+      <stop offset="0%" stop-color="#3f6347"/>
+      <stop offset="48%" stop-color="#2b3c30"/>
+      <stop offset="100%" stop-color="#1b281f"/>
+    </radialGradient>
+    <radialGradient id="fog" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#08080e" stop-opacity="0"/>
+      <stop offset="42%" stop-color="#08080e" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#08080e" stop-opacity="0.55"/>
+      <stop offset="82%" stop-color="#08080e" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#08080e" stop-opacity="0.97"/>
+    </radialGradient>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- app background -->
+  <rect width="1240" height="860" fill="#0c0e14"/>
+
+  <!-- LEFT sidebar: tools -->
+  <rect x="0" y="0" width="212" height="860" fill="#13161d"/>
+  <rect x="0" y="0" width="212" height="860" fill="none" stroke="#222834"/>
+  <text x="24" y="52" fill="#6366F1" font-size="22" font-weight="800">🎲 GameTable</text>
+  <text x="24" y="82" fill="#cdd0da" font-size="17" font-weight="700">Lost Mines</text>
+
+  <text x="24" y="124" fill="#7b8494" font-size="12" font-weight="700" letter-spacing="1">MAPS</text>
+  <g font-size="13" fill="#e8e8ea">
+    <rect x="18" y="134" width="176" height="30" rx="7" fill="#232838" stroke="#2f3647"/>
+    <text x="30" y="154">Cragmaw Cave</text>
+    <rect x="18" y="170" width="176" height="30" rx="7" fill="#1b1f28" stroke="#272d3a"/>
+    <text x="30" y="190" fill="#c2c6d2">Tavern</text>
+  </g>
+
+  <text x="24" y="238" fill="#7b8494" font-size="12" font-weight="700" letter-spacing="1">CREATURES</text>
+  <g font-size="13">
+    <rect x="18" y="248" width="176" height="30" rx="7" fill="#1b1f28" stroke="#272d3a"/>
+    <text x="30" y="268" fill="#e8e8ea">🖼 Goblin</text>
+    <rect x="18" y="284" width="176" height="30" rx="7" fill="#1b1f28" stroke="#272d3a"/>
+    <text x="30" y="304" fill="#e8e8ea">🖼 Innkeeper <tspan fill="#8b93a3">🔒</tspan></text>
+    <rect x="18" y="320" width="176" height="30" rx="7" fill="#1b1f28" stroke="#272d3a"/>
+    <text x="30" y="340" fill="#e8e8ea">Thrain (PC)</text>
+  </g>
+
+  <!-- CENTER: map -->
+  <g>
+    <rect x="212" y="0" width="716" height="860" fill="url(#mapg)"/>
+    <rect x="212" y="0" width="716" height="860" fill="url(#grid)"/>
+
+    <!-- tokens (under fog edges, lit in center) -->
+    <g font-size="15" font-weight="700" text-anchor="middle">
+      <circle cx="520" cy="420" r="27" fill="#4c6ef5" stroke="#000" stroke-opacity="0.5" stroke-width="3"/>
+      <text x="520" y="426" fill="#fff">PC</text>
+      <circle cx="600" cy="500" r="27" fill="#37b24d" stroke="#000" stroke-opacity="0.5" stroke-width="3"/>
+      <text x="600" y="506" fill="#fff">PC</text>
+      <circle cx="660" cy="400" r="27" fill="#e8590c" stroke="#000" stroke-opacity="0.5" stroke-width="3"/>
+      <text x="660" y="406" fill="#fff">GB</text>
+      <circle cx="770" cy="560" r="26" fill="#868e96" stroke="#ff6b6b" stroke-width="3" stroke-dasharray="7 5" opacity="0.85"/>
+      <text x="770" y="566" fill="#fff">?</text>
+    </g>
+
+    <!-- fog overlay -->
+    <rect x="212" y="0" width="716" height="860" fill="url(#fog)"/>
+
+    <!-- toolbar chips -->
+    <g font-size="13" font-weight="600">
+      <rect x="232" y="20" width="96" height="30" rx="7" fill="#3b5bdb"/>
+      <text x="246" y="40" fill="#fff">Fog: reveal</text>
+      <rect x="336" y="20" width="84" height="30" rx="7" fill="#232838" stroke="#2f3647"/>
+      <text x="350" y="40" fill="#e8e8ea">Reset fog</text>
+      <rect x="428" y="20" width="92" height="30" rx="7" fill="#232838" stroke="#2f3647"/>
+      <text x="442" y="40" fill="#e8e8ea">Share link</text>
+    </g>
+    <text x="570" y="828" fill="#aeb2bf" font-size="13" text-anchor="middle" font-family="JetBrains Mono, monospace">Players see only the revealed map · the DM sees everything</text>
+  </g>
+
+  <!-- RIGHT: presence + dice -->
+  <rect x="928" y="0" width="312" height="860" fill="#13161d"/>
+  <rect x="928" y="0" width="312" height="860" fill="none" stroke="#222834"/>
+
+  <text x="952" y="52" fill="#7b8494" font-size="12" font-weight="700" letter-spacing="1">AT THE TABLE (3)</text>
+  <g font-size="14" fill="#dfe1e8">
+    <circle cx="960" cy="78" r="6" fill="#f0c060"/><text x="976" y="83">DM <tspan fill="#f0b429">(DM)</tspan></text>
+    <circle cx="960" cy="106" r="6" fill="#4c6ef5"/><text x="976" y="111">Alice</text>
+    <circle cx="960" cy="134" r="6" fill="#37b24d"/><text x="976" y="139">Ben</text>
+  </g>
+
+  <text x="952" y="196" fill="#7b8494" font-size="12" font-weight="700" letter-spacing="1">DICE</text>
+  <g font-size="12">
+    <rect x="948" y="210" width="40" height="28" rx="6" fill="#232838"/><text x="958" y="229" fill="#e8e8ea">d20</text>
+    <rect x="994" y="210" width="40" height="28" rx="6" fill="#232838"/><text x="1006" y="229" fill="#e8e8ea">d12</text>
+    <rect x="1040" y="210" width="40" height="28" rx="6" fill="#232838"/><text x="1052" y="229" fill="#e8e8ea">d8</text>
+    <rect x="1086" y="210" width="40" height="28" rx="6" fill="#232838"/><text x="1098" y="229" fill="#e8e8ea">d6</text>
+    <rect x="948" y="248" width="230" height="30" rx="7" fill="#0f1218" stroke="#2a2f3c"/><text x="962" y="268" fill="#8b93a3">2d6+3</text>
+    <rect x="1120" y="248" width="60" height="30" rx="7" fill="#3b5bdb"/><text x="1150" y="268" fill="#fff" text-anchor="middle" font-weight="700">Roll</text>
+  </g>
+  <g font-size="13">
+    <rect x="948" y="294" width="232" height="40" rx="8" fill="#171a22" stroke="#222834"/>
+    <text x="962" y="312" fill="#e8e8ea" font-weight="700">Alice <tspan font-weight="400">1d20+5</tspan></text>
+    <text x="1166" y="312" fill="#f0b429" text-anchor="end" font-weight="800">23</text>
+    <text x="962" y="328" fill="#8b93a3" font-size="11">[18] +5</text>
+
+    <rect x="948" y="342" width="232" height="40" rx="8" fill="#171a22" stroke="#222834"/>
+    <text x="962" y="360" fill="#e8e8ea" font-weight="700">Ben <tspan font-weight="400">2d6+3</tspan></text>
+    <text x="1166" y="360" fill="#f0b429" text-anchor="end" font-weight="800">11</text>
+    <text x="962" y="376" fill="#8b93a3" font-size="11">[5, 3] +3</text>
+
+    <rect x="948" y="390" width="232" height="40" rx="8" fill="#171a22" stroke="#222834"/>
+    <text x="962" y="408" fill="#8b93a3" font-weight="700">DM <tspan font-weight="400">1d20 🤫</tspan></text>
+    <text x="1166" y="408" fill="#8b93a3" text-anchor="end" font-weight="800">—</text>
+    <text x="962" y="424" fill="#6b7280" font-size="11">private roll</text>
+  </g>
+</svg>
