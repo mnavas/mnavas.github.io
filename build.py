@@ -83,6 +83,12 @@ PROJECTS = [
          desc="Turn conversation recordings into accurate, speaker-labeled text — in Spanish, English and Japanese — fully offline. Whisper (faster-whisper) transcribes while pyannote figures out who said what, with a CLI and a desktop GUI. Exports txt, srt, vtt and json; nothing ever leaves your machine.",
          tags=["Python","Whisper","Offline","CLI & GUI"],
          open="https://mnavas.github.io/audio-transcriber/", repo="https://github.com/mnavas/audio-transcriber"),
+    dict(id="recipe-mcp", emoji="🍯", name="recipe-mcp", accent="#E08A1E",
+         img="assets/projects/recipe-mcp.svg",
+         tagline="The kitchen-math layer for your AI assistant",
+         desc="A local <a href='https://modelcontextprotocol.io' style='color:inherit;text-decoration:underline'>MCP</a> server that gives Claude — or any MCP client — reliable kitchen tools: unit conversion, ingredient weight⇄volume by density (how many grams is a tablespoon of salt?), recipe scaling, baker's percentages and ratios, plus a private cooking assistant powered by your own Ollama models. 17 tools, no API keys, nothing leaves your machine.",
+         tags=["Python","MCP","Ollama","Local"],
+         open="https://mnavas.github.io/recipe-mcp/", repo="https://github.com/mnavas/recipe-mcp"),
 ]
 
 BOOK = dict(id="book", emoji="📖", name="User Story", accent="#1F7A8C",

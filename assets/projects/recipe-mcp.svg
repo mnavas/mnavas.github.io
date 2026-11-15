@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 775" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="rbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdf8ef"/>
+      <stop offset="100%" stop-color="#f6ecd9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- app background -->
+  <rect width="1240" height="775" fill="url(#rbg)"/>
+
+  <!-- LEFT sidebar: tool palette -->
+  <rect x="0" y="0" width="300" height="775" fill="#fffdf8"/>
+  <line x1="300" y1="0" x2="300" y2="775" stroke="#ece3d5"/>
+  <text x="28" y="56" fill="#E08A1E" font-size="24" font-weight="800">🍯 recipe-mcp</text>
+  <text x="28" y="82" fill="#8a7a63" font-size="14" font-weight="600">local MCP server · 17 tools</text>
+
+  <text x="28" y="128" fill="#a7987f" font-size="12" font-weight="700" letter-spacing="1">UNITS</text>
+  <g font-family="JetBrains Mono, monospace" font-size="13">
+    <rect x="22" y="140" width="256" height="30" rx="7" fill="#f4ecdf" stroke="#e7dcc8"/>
+    <text x="36" y="160" fill="#8a4b00">convert_weight</text>
+    <rect x="22" y="176" width="256" height="30" rx="7" fill="#f9f4ea" stroke="#efe6d5"/>
+    <text x="36" y="196" fill="#8a4b00">convert_volume</text>
+  </g>
+
+  <text x="28" y="240" fill="#a7987f" font-size="12" font-weight="700" letter-spacing="1">INGREDIENTS</text>
+  <g font-family="JetBrains Mono, monospace" font-size="13">
+    <rect x="22" y="252" width="256" height="30" rx="7" fill="#f4ecdf" stroke="#e7dcc8"/>
+    <text x="36" y="272" fill="#8a4b00">weight_to_volume</text>
+    <rect x="22" y="288" width="256" height="30" rx="7" fill="#f9f4ea" stroke="#efe6d5"/>
+    <text x="36" y="308" fill="#8a4b00">volume_to_weight</text>
+  </g>
+
+  <text x="28" y="352" fill="#a7987f" font-size="12" font-weight="700" letter-spacing="1">SCALING</text>
+  <g font-family="JetBrains Mono, monospace" font-size="13">
+    <rect x="22" y="364" width="256" height="30" rx="7" fill="#f4ecdf" stroke="#e7dcc8"/>
+    <text x="36" y="384" fill="#8a4b00">scale_recipe</text>
+    <rect x="22" y="400" width="256" height="30" rx="7" fill="#f9f4ea" stroke="#efe6d5"/>
+    <text x="36" y="420" fill="#8a4b00">bakers_percentages</text>
+    <rect x="22" y="436" width="256" height="30" rx="7" fill="#f9f4ea" stroke="#efe6d5"/>
+    <text x="36" y="456" fill="#8a4b00">solve_ratio</text>
+  </g>
+
+  <text x="28" y="520" fill="#a7987f" font-size="12" font-weight="700" letter-spacing="1">ASSISTANT</text>
+  <g font-family="JetBrains Mono, monospace" font-size="13">
+    <rect x="22" y="532" width="256" height="30" rx="7" fill="#f4ecdf" stroke="#e7dcc8"/>
+    <text x="36" y="552" fill="#8a4b00">cooking_assistant</text>
+  </g>
+  <g font-size="13">
+    <circle cx="34" cy="596" r="5" fill="#37b24d"/>
+    <text x="48" y="601" fill="#6b5d4b">Ollama · gemma3n</text>
+  </g>
+
+  <!-- RIGHT: tool-call results -->
+  <!-- card 1: weight -> volume -->
+  <rect x="336" y="40" width="864" height="150" rx="16" fill="#ffffff" stroke="#ece3d5"/>
+  <text x="364" y="80" font-family="JetBrains Mono, monospace" font-size="15" fill="#8a4b00" font-weight="700">▸ volume_to_weight("table salt", 1, "tbsp", "g")</text>
+  <line x1="364" y1="98" x2="1172" y2="98" stroke="#f0e8d9"/>
+  <text x="364" y="140" font-size="42" font-weight="800" fill="#201a14">18.0 <tspan font-size="22" fill="#8a7a63" font-weight="600">g</tspan></text>
+  <text x="364" y="170" font-size="14" fill="#8a7a63">1 tablespoon of fine table salt — no gram scale needed</text>
+  <rect x="980" y="70" width="192" height="92" rx="12" fill="#fdf5e7"/>
+  <text x="1076" y="112" font-size="13" fill="#a7987f" text-anchor="middle">density</text>
+  <text x="1076" y="142" font-size="26" font-weight="800" fill="#E08A1E" text-anchor="middle">1.22 g/ml</text>
+
+  <!-- card 2: baker's percentages -->
+  <rect x="336" y="210" width="520" height="340" rx="16" fill="#ffffff" stroke="#ece3d5"/>
+  <text x="364" y="250" font-family="JetBrains Mono, monospace" font-size="15" fill="#8a4b00" font-weight="700">▸ bakers_percentages(...)</text>
+  <text x="364" y="276" font-size="13" fill="#8a7a63">flour = 100% · everything relative to flour</text>
+  <g font-size="16">
+    <!-- rows -->
+    <text x="364" y="322" fill="#201a14" font-weight="600">bread flour</text>
+    <text x="700" y="322" fill="#8a7a63" text-anchor="end">1000 g</text>
+    <text x="828" y="322" fill="#E08A1E" text-anchor="end" font-weight="800">100%</text>
+    <rect x="364" y="334" width="464" height="6" rx="3" fill="#f0e8d9"/>
+    <rect x="364" y="334" width="464" height="6" rx="3" fill="#E08A1E"/>
+
+    <text x="364" y="372" fill="#201a14" font-weight="600">water</text>
+    <text x="700" y="372" fill="#8a7a63" text-anchor="end">700 g</text>
+    <text x="828" y="372" fill="#E08A1E" text-anchor="end" font-weight="800">70%</text>
+    <rect x="364" y="384" width="464" height="6" rx="3" fill="#f0e8d9"/>
+    <rect x="364" y="384" width="325" height="6" rx="3" fill="#E8A23A"/>
+
+    <text x="364" y="422" fill="#201a14" font-weight="600">salt</text>
+    <text x="700" y="422" fill="#8a7a63" text-anchor="end">20 g</text>
+    <text x="828" y="422" fill="#E08A1E" text-anchor="end" font-weight="800">2%</text>
+    <rect x="364" y="434" width="464" height="6" rx="3" fill="#f0e8d9"/>
+    <rect x="364" y="434" width="18" height="6" rx="3" fill="#E8A23A"/>
+
+    <text x="364" y="472" fill="#201a14" font-weight="600">instant yeast</text>
+    <text x="700" y="472" fill="#8a7a63" text-anchor="end">7 g</text>
+    <text x="828" y="472" fill="#E08A1E" text-anchor="end" font-weight="800">0.7%</text>
+    <rect x="364" y="484" width="464" height="6" rx="3" fill="#f0e8d9"/>
+    <rect x="364" y="484" width="9" height="6" rx="3" fill="#E8A23A"/>
+  </g>
+  <line x1="364" y1="508" x2="828" y2="508" stroke="#f0e8d9"/>
+  <text x="364" y="534" font-size="14" fill="#8a7a63">72.7% hydration dough</text>
+
+  <!-- card 3: assistant reply -->
+  <rect x="876" y="210" width="324" height="340" rx="16" fill="#1f1a12"/>
+  <text x="904" y="250" font-size="14" fill="#f0a843" font-weight="700">🤖 cooking_assistant</text>
+  <text x="904" y="272" font-size="12" fill="#b0a089" font-family="JetBrains Mono, monospace">gemma3n · local</text>
+  <line x1="904" y1="288" x2="1172" y2="288" stroke="#2e2619"/>
+  <text x="904" y="322" font-size="13.5" fill="#b0a089">“Why weigh flour instead</text>
+  <text x="904" y="344" font-size="13.5" fill="#b0a089">of using cups?”</text>
+  <g font-size="14.5" fill="#f3ebdd">
+    <text x="904" y="390">Cup measures vary with</text>
+    <text x="904" y="414">how the flour is packed.</text>
+    <text x="904" y="438">Weighing in grams gives</text>
+    <text x="904" y="462">consistent results every</text>
+    <text x="904" y="486">bake — especially for</text>
+    <text x="904" y="510">bread and pastry.</text>
+  </g>
+
+  <!-- bottom strip: scaling -->
+  <rect x="336" y="570" width="864" height="150" rx="16" fill="#ffffff" stroke="#ece3d5"/>
+  <text x="364" y="610" font-family="JetBrains Mono, monospace" font-size="15" fill="#8a4b00" font-weight="700">▸ scale_recipe(recipe, from_yield=8, to_yield=12)</text>
+  <line x1="364" y1="628" x2="1172" y2="628" stroke="#f0e8d9"/>
+  <g font-size="16" fill="#201a14">
+    <text x="364" y="668" font-weight="700">×1.5</text>
+    <text x="470" y="668" fill="#8a7a63">flour 300 → <tspan fill="#201a14" font-weight="700">450 g</tspan></text>
+    <text x="700" y="668" fill="#8a7a63">sugar 150 → <tspan fill="#201a14" font-weight="700">225 g</tspan></text>
+    <text x="940" y="668" fill="#8a7a63">butter 100 → <tspan fill="#201a14" font-weight="700">150 g</tspan></text>
+  </g>
+  <text x="364" y="700" font-size="14" fill="#8a7a63">every amount rescaled in proportion · units preserved</text>
+</svg>
