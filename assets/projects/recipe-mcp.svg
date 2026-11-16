@@ -13,7 +13,7 @@
   <rect x="0" y="0" width="300" height="775" fill="#fffdf8"/>
   <line x1="300" y1="0" x2="300" y2="775" stroke="#ece3d5"/>
   <text x="28" y="56" fill="#E08A1E" font-size="24" font-weight="800">🍯 recipe-mcp</text>
-  <text x="28" y="82" fill="#8a7a63" font-size="14" font-weight="600">local MCP server · 17 tools</text>
+  <text x="28" y="82" fill="#8a7a63" font-size="14" font-weight="600">local MCP server · 33 tools</text>
 
   <text x="28" y="128" fill="#a7987f" font-size="12" font-weight="700" letter-spacing="1">UNITS</text>
   <g font-family="JetBrains Mono, monospace" font-size="13">
