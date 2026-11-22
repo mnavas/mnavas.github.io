@@ -86,7 +86,7 @@ PROJECTS = [
     dict(id="recipe-mcp", emoji="🍯", name="recipe-mcp", accent="#E08A1E",
          img="assets/projects/recipe-mcp.svg",
          tagline="The kitchen-math layer for your AI assistant",
-         desc="A local <a href='https://modelcontextprotocol.io' style='color:inherit;text-decoration:underline'>MCP</a> server that gives Claude — or any MCP client — reliable kitchen tools: unit conversion, ingredient weight⇄volume by density (how many grams is a tablespoon of salt?), counts⇄weight (2 eggs → 100 g), temperature &amp; oven (°C/°F/gas mark/fan), recipe scaling, baker's percentages, save &amp; cook from your own recipe library, plus a private cooking assistant powered by your own Ollama models. 44 tools, no API keys, nothing leaves your machine.",
+         desc="A local <a href='https://modelcontextprotocol.io' style='color:inherit;text-decoration:underline'>MCP</a> server that gives Claude — or any MCP client — reliable kitchen tools: unit conversion, ingredient weight⇄volume by density (how many grams is a tablespoon of salt?), counts⇄weight (2 eggs → 100 g), temperature &amp; oven (°C/°F/gas mark/fan), recipe scaling, baker's percentages, save &amp; cook from your own recipe library, plus a private cooking assistant powered by your own Ollama models. 51 tools, no API keys, nothing leaves your machine.",
          tags=["Python","MCP","Ollama","Local"],
          open="https://mnavas.github.io/recipe-mcp/", repo="https://github.com/mnavas/recipe-mcp"),
 ]
